@@ -1,5 +1,11 @@
 require "bundler/setup"
 require "apinator"
+require "apinator/queries/base"
+require "apinator/queries/filter"
+require "support/dummy/models/base"
+require "support/dummy/models/book"
+require "support/dummy/queries/book"
+require "support/dummy/queries/book_with_filter"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

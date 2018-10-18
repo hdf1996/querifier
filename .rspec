@@ -1,3 +1,4 @@
---format documentation
+--format Fuubar
 --color
 --require spec_helper
+--require byebug
