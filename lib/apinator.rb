@@ -2,9 +2,9 @@ require "apinator/version"
 require "apinator/queries/base"
 require "apinator/queries/where"
 require "apinator/queries/order"
+require "apinator/queries/default"
 
 # TODO: Create generator
-# TODO: Create default query
 # TODO: Add greather than
 # TODO: Add lower than
 # TODO: Add equal than
