@@ -1,4 +1,4 @@
-module Apinator
+module Querifier
   module Queries
     module Base
       def initialize(params)

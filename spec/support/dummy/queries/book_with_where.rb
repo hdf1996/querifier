@@ -1,8 +1,8 @@
 module Dummy
   module Queries
     class BookWithWhere
-      include Apinator::Queries::Base
-      include Apinator::Queries::Where
+      include Querifier::Queries::Base
+      include Querifier::Queries::Where
 
 
       WHERE_ATTRIBUTES = [:key, :key_2].freeze

@@ -1,4 +1,4 @@
-module Apinator
+module Querifier
   module Queries
     module Order
       ORDER_ATTRIBUTES = [].freeze

@@ -1,8 +1,8 @@
 module Dummy
   module Queries
     class BookWithOrder
-      include Apinator::Queries::Base
-      include Apinator::Queries::Order
+      include Querifier::Queries::Base
+      include Querifier::Queries::Order
 
       ORDER_ATTRIBUTES = [:key, :key_2].freeze
 

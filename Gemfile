@@ -2,8 +2,11 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
-# Specify your gem's dependencies in apinator.gemspec
+# Specify your gem's dependencies in Querifier.gemspec
 gemspec
 
-gem 'byebug'
-gem 'fuubar'
+group :test do
+  gem 'byebug'
+  gem 'fuubar'
+  gem 'generator_spec'
+end

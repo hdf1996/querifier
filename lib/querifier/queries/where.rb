@@ -1,4 +1,4 @@
-module Apinator
+module Querifier
   module Queries
     module Where
       WHERE_ATTRIBUTES = [].freeze
@@ -11,6 +11,7 @@ module Apinator
 
       def filter
         return self if @filtered
+        # Use directly the permited ones
         self.class::WHERE_ATTRIBUTES.each do |attribute|
           filter_content = filter_value(attribute)
           send("filter_by_#{attribute}", filter_content) if filter_content
@@ -34,7 +35,7 @@ module Apinator
         super
       end
 
-      def filter_params
+      def filter_params # TODO: Filter only permitted ones
         @filter_params ||= params.fetch(:where, {}) #TODO: unhardcode where
       end
     end

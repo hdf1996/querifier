@@ -1,4 +1,4 @@
-module Apinator
+module Querifier
   module Queries
     module Default
       def self.included(klass)

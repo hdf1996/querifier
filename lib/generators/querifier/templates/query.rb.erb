@@ -1,0 +1,7 @@
+class <%= class_name %>Query
+  include Querifier::Queries::Default
+
+  # Configure these constants to add attributes to the ordering a filtering
+  WHERE_ATTRIBUTES = [:id].freeze
+  ORDER_ATTRIBUTES = [:id].freeze
+end

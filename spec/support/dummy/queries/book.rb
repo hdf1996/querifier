@@ -1,7 +1,7 @@
 module Dummy
   module Queries
     class Book
-      include Apinator::Queries::Base
+      include Querifier::Queries::Base
     end
   end
 end

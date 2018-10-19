@@ -1,6 +1,6 @@
 require "bundler/setup"
-require "apinator"
-
+require 'rails/generators'
+require "querifier"
 Dir["./spec/support/**/*.rb"].sort.each { |f| require f }
 
 RSpec.configure do |config|
