@@ -7,7 +7,7 @@ module Apinator
       end
 
       def collection
-        @collection ||= self.class.entity_class
+        @collection ||= self.class.entity_class.all
       end
 
       def self.included(klass)
@@ -21,7 +21,7 @@ module Apinator
       module ClassMethods
         def entity_class(value = nil)
           return entity_class = value unless value.nil?
-          @@entity_class ||= Object.const_get self.name.split('::').last
+          @@entity_class ||= Object.const_get self.name.split('::').last.split('Query').first
         end
 
         def entity_class=(value)
