@@ -32,25 +32,29 @@ RSpec.describe Dummy::Queries::Book do
     end
 
     describe '#params' do
-      subject(:params) { described_class.new(params).params }
+      subject(:query_params) { described_class.new(params).params }
       context 'with the filter key' do
         let(:params) { { filter: { where: { key: '1' } } } }
 
         it 'doesn\'t raise exceptions' do
-          expect { params }.not_to raise_exception
+          expect { query_params }.not_to raise_exception
         end
 
-        it 'has the where key filled'
+        it 'has the where key filled' do
+          expect(query_params.fetch(:where)).to have_key(:key)
+        end
       end
 
       context 'without the filter key' do
         let(:params) { { other_key: { where: { key: '1' } } } }
 
         it 'doesn\'t raise exceptions' do
-          expect { params }.not_to raise_exception
+          expect { query_params }.not_to raise_exception
         end
 
-        it 'has an empty where key'
+        it 'has the where key filled' do
+          expect(query_params).to be_empty
+        end
       end
     end
   end

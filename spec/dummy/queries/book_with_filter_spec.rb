@@ -52,7 +52,49 @@ RSpec.describe Dummy::Queries::BookWithFilter do
 
     # TODO: Until here, should be in a general shared context
 
-    describe '.collection' do
+    describe "#filter_by" do
+      let(:query) { described_class.new(params) }
+
+      before do
+        allow(described_class.entity_class).to receive(:where)
+        query.collection
+      end
+
+      context 'with an empty filter' do
+        let(:params) { { filter: { where: { key: nil } } } }
+
+        it 'doesn\'t call the where statement' do
+          expect(query.collection).not_to have_received(:where)
+        end
+      end
+
+      context 'with a fulfilled filter' do
+        let(:params) { { filter: { where: { key: '1' } } } }
+
+        it 'calls the where statement' do
+          expect(query.collection).to have_received(:where)
+        end
+      end
+    end
+
+    described_class::FILTER_ATTRIBUTES.each do |attr|
+      describe "#filter_by_#{attr}" do
+        let(:query) { described_class.new(params) }
+        let(:params) { { filter: { where: { key: '1' } } } }
+        subject(:filter_by) { query.send("filter_by_#{attr}") }
+
+        before do
+          allow(query).to receive(:filter_by)
+          filter_by
+        end
+
+        it 'calls filter_by' do
+          expect(query).to have_received(:filter_by).with(attr)
+        end
+      end
+    end
+
+    describe '#collection' do
       context 'with filter' do
         let(:query) { described_class.new(params) }
         subject(:collection) { query.collection }

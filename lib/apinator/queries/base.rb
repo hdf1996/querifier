@@ -7,7 +7,7 @@ module Apinator
       end
 
       def collection
-        @collection = self.class.entity_class
+        @collection ||= self.class.entity_class
       end
 
       def self.included(klass)
