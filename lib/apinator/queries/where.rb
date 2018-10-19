@@ -1,7 +1,7 @@
 module Apinator
   module Queries
-    module Filter
-      FILTER_ATTRIBUTES = [].freeze
+    module Where
+      WHERE_ATTRIBUTES = [].freeze
 
       def collection
         super
@@ -11,7 +11,7 @@ module Apinator
 
       def filter
         return self if @filtered
-        self.class::FILTER_ATTRIBUTES.each do |attribute|
+        self.class::WHERE_ATTRIBUTES.each do |attribute|
           filter_content = filter_value(attribute)
           send("filter_by_#{attribute}", filter_content) if filter_content
         end

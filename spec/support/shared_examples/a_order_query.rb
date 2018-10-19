@@ -1,6 +1,4 @@
-describe Dummy::Queries::BookWithOrder do
-  it_behaves_like 'a base query', Book
-
+shared_examples "a order query" do
   describe "#sort_by" do
     let(:query) { described_class.new(params) }
 

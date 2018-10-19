@@ -1,6 +1,4 @@
-describe Dummy::Queries::BookWithFilter do
-  it_behaves_like 'a base query', Book
-
+shared_examples "a where query" do
   describe "#filter_by" do
     let(:query) { described_class.new(params) }
 
@@ -26,7 +24,7 @@ describe Dummy::Queries::BookWithFilter do
     end
   end
 
-  described_class::FILTER_ATTRIBUTES.each do |attr|
+  described_class::WHERE_ATTRIBUTES.each do |attr|
     describe "#filter_by_#{attr}" do
       let(:query) { described_class.new(params) }
       let(:params) { { filter: { where: { key: '1' } } } }

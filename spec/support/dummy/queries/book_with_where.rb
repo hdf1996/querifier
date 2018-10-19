@@ -1,11 +1,11 @@
 module Dummy
   module Queries
-    class BookWithFilter
+    class BookWithWhere
       include Apinator::Queries::Base
-      include Apinator::Queries::Filter
+      include Apinator::Queries::Where
 
 
-      FILTER_ATTRIBUTES = [:key, :key_2].freeze
+      WHERE_ATTRIBUTES = [:key, :key_2].freeze
 
       entity_class ::Book
     end

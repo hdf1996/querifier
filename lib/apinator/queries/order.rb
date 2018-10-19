@@ -13,6 +13,7 @@ module Apinator
       def order
         return self if @ordered
         if valid_sort?
+          # TODO: Permit multiple orders
           option = order_params.keys.first
           direction = order_params.fetch(option, nil)
           send("order_by_#{option}", direction)

@@ -1,6 +1,6 @@
 require "apinator/version"
 require "apinator/queries/base"
-require "apinator/queries/filter"
+require "apinator/queries/where"
 require "apinator/queries/order"
 
 # TODO: Create generator
