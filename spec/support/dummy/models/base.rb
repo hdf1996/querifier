@@ -8,6 +8,10 @@ module Models
       def where(*args)
         self
       end
+
+      def order(*args)
+        self
+      end
     end
   end
 end

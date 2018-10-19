@@ -1,6 +1,7 @@
 require "apinator/version"
 require "apinator/queries/base"
 require "apinator/queries/filter"
+require "apinator/queries/order"
 
 # TODO: Create generator
 # TODO: Create sortable
@@ -9,5 +10,6 @@ require "apinator/queries/filter"
 # TODO: Add lower than
 # TODO: Add equal than
 # TODO: Add apinator config
+# TODO: Attributes as a class method instead of constant
 module Apinator
 end
