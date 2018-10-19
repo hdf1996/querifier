@@ -12,8 +12,9 @@ module Apinator
 
       def order
         return self if @ordered
-        if order_params.any? && valid_sort?(order_params.first)
-          option, direction = order_params.first
+        if valid_sort?
+          option = order_params.keys.first
+          direction = order_params.fetch(option, nil)
           send("order_by_#{option}", direction)
         else
           order_by_default
@@ -30,12 +31,17 @@ module Apinator
         @collection = @collection.order(option => direction)
       end
 
-      def valid_sort?(sort)
-        option, direction = sort
+      def valid_sort?
+        option = order_params.keys.first
+        direction = order_params.fetch(option, nil)
         option &&
           direction &&
-          self.class::ORDER_ATTRIBUTES.include?(option) &&
+          valid_option?(option) &&
           %w[asc desc].include?(direction.to_s.downcase)
+      end
+
+      def valid_option?(option)
+        self.class::ORDER_ATTRIBUTES.include?(option.to_sym)
       end
 
       def method_missing(message, *args, &block)
@@ -44,7 +50,7 @@ module Apinator
       end
 
       def order_params
-        @order_params ||= params.fetch(:order, {}).find_all { |(k, _)| self.class::ORDER_ATTRIBUTES.include? k }.to_h #TODO: unhardcode order
+        @order_params ||= params.fetch(:order, {}).select { |k| valid_option? k.to_sym } #TODO: unhardcode order
       end
     end
   end

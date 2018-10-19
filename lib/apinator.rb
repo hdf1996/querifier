@@ -4,7 +4,6 @@ require "apinator/queries/filter"
 require "apinator/queries/order"
 
 # TODO: Create generator
-# TODO: Create sortable
 # TODO: Create default query
 # TODO: Add greather than
 # TODO: Add lower than
