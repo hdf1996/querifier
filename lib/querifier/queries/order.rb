@@ -1,9 +1,6 @@
 module Querifier
   module Queries
     module Order
-      ORDER_ATTRIBUTES = [].freeze
-      DEFAULT_SORT = { id: :asc }.freeze
-
       def collection
         super
         order
@@ -25,7 +22,7 @@ module Querifier
       end
 
       def order_by_default
-        order_by(*self.class::DEFAULT_SORT.to_a.flatten)
+        order_by(*self.class.default_sort.to_a.flatten)
       end
 
       def order_by(option, direction)
@@ -42,7 +39,7 @@ module Querifier
       end
 
       def valid_option?(option)
-        self.class::ORDER_ATTRIBUTES.include?(option.to_sym)
+        self.class.order_attributes.include?(option.to_sym)
       end
 
       def method_missing(message, *args, &block)
@@ -53,6 +50,25 @@ module Querifier
       def order_params
         @order_params ||=
           params.fetch(Config.order_param, {}).select { |k| valid_option? k.to_sym }
+      end
+
+      def self.included(klass)
+        klass.extend(ClassMethods)
+      end
+
+      module ClassMethods
+        @@order_attributes = []
+        @@default_sort = { id: :asc }
+
+        def order_attributes(*value)
+          return @@order_attributes = [*value] if value.any?
+          @@order_attributes
+        end
+
+        def default_sort(value = nil)
+          return @@default_sort = value if value
+          @@default_sort
+        end
       end
     end
   end

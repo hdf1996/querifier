@@ -11,7 +11,7 @@ shared_examples "a order query" do
       let(:params) { { filter: { order: { key: nil } } } }
 
       it 'orders by default' do
-        expect(query.collection).to have_received(:order).with(described_class::DEFAULT_SORT)
+        expect(query.collection).to have_received(:order).with(described_class.default_sort)
       end
     end
 
@@ -24,7 +24,7 @@ shared_examples "a order query" do
     end
   end
 
-  described_class::ORDER_ATTRIBUTES.each do |attr|
+  described_class.order_attributes.each do |attr|
     describe "#order_by_#{attr}" do
       let(:query) { described_class.new(params) }
       let(:params) { { filter: { order: { key: :desc } } } }

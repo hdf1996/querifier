@@ -24,7 +24,7 @@ shared_examples "a where query" do
     end
   end
 
-  described_class::WHERE_ATTRIBUTES.each do |attr|
+  described_class.where_attributes.each do |attr|
     describe "#filter_by_#{attr}" do
       let(:query) { described_class.new(params) }
       let(:params) { { filter: { where: { key: '1' } } } }

@@ -10,12 +10,12 @@ module Querifier
         @collection ||= self.class.entity_class.all
       end
 
-      def self.included(klass)
-        klass.extend(ClassMethods)
-      end
-
       def params
         @params.fetch(Config.filter_param, {})
+      end
+
+      def self.included(klass)
+        klass.extend(ClassMethods)
       end
 
       module ClassMethods

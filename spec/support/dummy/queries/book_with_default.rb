@@ -3,8 +3,8 @@ module Dummy
     class BookWithDefault
       include Querifier::Queries::Default
 
-      ORDER_ATTRIBUTES = [:key, :key_2].freeze
-      WHERE_ATTRIBUTES = [:key, :key_2].freeze
+      order_attributes :key, :key_2
+      where_attributes :key, :key_2
 
       entity_class ::Book
     end
