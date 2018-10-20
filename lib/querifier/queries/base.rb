@@ -15,7 +15,7 @@ module Querifier
       end
 
       def params
-        @params.fetch(:filter, {})
+        @params.fetch(Config.filter_param, {})
       end
 
       module ClassMethods

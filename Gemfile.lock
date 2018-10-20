@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    Querifier (0.1.0)
+    querifier (0.1.0)
       railties (>= 4.1.0, < 6)
 
 GEM
@@ -85,11 +85,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  Querifier!
   bundler (~> 1.16)
   byebug
   fuubar
   generator_spec
+  querifier!
   rake (~> 10.0)
   rspec (~> 3.0)
 

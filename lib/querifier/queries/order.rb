@@ -51,7 +51,8 @@ module Querifier
       end
 
       def order_params
-        @order_params ||= params.fetch(:order, {}).select { |k| valid_option? k.to_sym } #TODO: unhardcode order
+        @order_params ||=
+          params.fetch(Config.order_param, {}).select { |k| valid_option? k.to_sym }
       end
     end
   end

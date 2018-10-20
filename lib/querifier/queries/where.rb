@@ -35,8 +35,13 @@ module Querifier
         super
       end
 
-      def filter_params # TODO: Filter only permitted ones
-        @filter_params ||= params.fetch(:where, {}) #TODO: unhardcode where
+      def valid_option?(option)
+        self.class::WHERE_ATTRIBUTES.include?(option.to_sym)
+      end
+
+      def filter_params
+        @filter_params ||=
+          params.fetch(Config.where_param, {}).select { |k| valid_option? k.to_sym }
       end
     end
   end
