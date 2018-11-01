@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/hdf1986/querifier.svg?branch=master)](https://travis-ci.com/hdf1986/querifier)
 # Querifier
 
 Querifier is a gem intended to create queries for api's easy & fast, it isn't an ORM, instead, it's a layer over it.
@@ -48,7 +49,8 @@ end
 
 After that, your query will be able to receive params like this
 ```ruby
-BookQuery.new(filter: { order: { id: desc }, where: { id: 1 } }).collection # Will return an array or query with the filtered and ordered results
+# Will return an array or query with the filtered and ordered results
+BookQuery.new(filter: { order: { id: desc }, where: { id: 1 } }).collection
 ```
 
 This work great with Rails controllers, you can start filtering and ordering with something like this:
@@ -111,7 +113,6 @@ end
 - Most of this structure is inspired by Loopback REST API for querying data (see https://loopback.io/doc/en/lb3/Querying-data.html). I don't like loopback at all, but i think this standard is a good place to start with
 - Probably there's some minor performance differences between custom methods and default ones (the custom ones being the faster ones), because we use `method_missing` magic to implement the default ones
 - If you don't want to use where, or order, you can include just `Querifier::Queries::Order` or `Querifier::Queries::Where` instead of `Querifier::Queries::Default`, according to your needs
--
 
 ## To-do's
 
