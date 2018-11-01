@@ -28,7 +28,7 @@ shared_examples "a where query" do
     describe "#filter_by_#{attr}" do
       let(:query) { described_class.new(params) }
       let(:params) { { filter: { where: { key: '1' } } } }
-      subject(:filter_by) { query.send("filter_by_#{attr}") }
+      subject(:filter_by) { query.send("filter_by_#{attr}", 1) }
 
       before do
         allow(query).to receive(:filter_by)
@@ -36,7 +36,7 @@ shared_examples "a where query" do
       end
 
       it 'calls filter_by' do
-        expect(query).to have_received(:filter_by).with(attr)
+        expect(query).to have_received(:filter_by).with(attr, 1)
       end
     end
   end

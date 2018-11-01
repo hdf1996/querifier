@@ -20,14 +20,14 @@ module Querifier
         filter_params.fetch(key.to_sym, nil)
       end
 
-      def filter_by(name)
+      def filter_by(name, value)
         filter_content = filter_value(name)
         @collection = @collection.where("#{name} LIKE ?", "%#{filter_content}%") if filter_content
         self
       end
 
       def method_missing(message, *args, &block)
-        return filter_by(Regexp.last_match(1).to_sym) if message.to_s =~ /filter_by_(.*)/ # rubocop:disable Performance/RegexpMatch, Metrics/LineLength
+        return filter_by(Regexp.last_match(1).to_sym, args.first) if message.to_s =~ /filter_by_(.*)/ # rubocop:disable Performance/RegexpMatch, Metrics/LineLength
         super
       end
 
