@@ -5,6 +5,12 @@ Querifier is a gem intended to create queries for api's easy & fast, it isn't an
 
 The basic use case is when you have an API and you want to filter & order the results without having to think too much
 
+## Demo
+
+You can check https://querifier-demo.herokuapp.com/v1/books?page=1&filter[where][title]=Season&filter[order][id]=desc for a demo of how it works
+
+The source code of the demo is available at https://github.com/hdf1986/querifier-demo
+
 ## Installation
 
 Add this line to your application's Gemfile:
