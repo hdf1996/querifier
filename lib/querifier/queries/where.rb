@@ -9,7 +9,7 @@ module Querifier
 
       def filter
         return self if @filtered
-        filter_params.each do |attribute|
+        filter_params.each do |(attribute, _)|
           value = filter_value(attribute)
           send("filter_by_#{attribute}", value) if value
         end
