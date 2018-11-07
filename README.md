@@ -69,6 +69,37 @@ class BookController < ApiController
 end
 ```
 
+## Custom model class
+
+Querifier will try to assume the class for your model removing the `Query` from your query classname, some examples are:
+  - BookQuery => Book
+  - BooksQuery => Books
+  - SomeModule::BookQuery => Book
+
+If your model isn't called like your query, you can configure it with the entity_class method, something like:
+
+```ruby
+class BookQuery
+  include Querifier::Queries::Default
+
+  # If no order param is provided, then this order will be used
+  # default_sort { id: :asc }
+  # Configure these constants to add attributes to the ordering a filtering
+  where_attributes :id, :author_name # Configure your attributes here
+  order_attributes :id # Configure your attributes here
+
+
+  # This will replace the assumption with the class you send via parameter
+  # The :: are optional, but I recommend you to be explicit about the modules of your class
+  entity_class ::SomeOtherClassName
+
+  def filter_by_author_name(value)
+    @collection = @collection.joins(:author).where(authors: { name: value })
+  end
+end
+
+```
+
 
 ## Custom methods
 
