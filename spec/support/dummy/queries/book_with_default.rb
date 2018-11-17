@@ -6,7 +6,9 @@ module Dummy
       order_attributes :key, :key_2
       where_attributes :key, :key_2
 
-      entity_class ::Book
+      def default_collection
+        ::Book.all
+      end
     end
   end
 end

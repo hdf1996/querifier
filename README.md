@@ -91,7 +91,9 @@ class BookQuery
 
   # This will replace the assumption with the class you send via parameter
   # The :: are optional, but I recommend you to be explicit about the modules of your class
-  entity_class ::SomeOtherClassName
+  def self.default_collection
+    ::SomeOtherClassName.all
+  end
 
   def filter_by_author_name(value)
     @collection = @collection.joins(:author).where(authors: { name: value })

@@ -3,7 +3,7 @@ shared_examples "a order query" do
     let(:query) { described_class.new(params) }
 
     before do
-      allow(described_class.entity_class).to receive(:order)
+      allow(described_class.default_collection).to receive(:order)
       query.collection
     end
 

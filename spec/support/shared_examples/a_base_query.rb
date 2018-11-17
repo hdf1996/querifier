@@ -1,7 +1,7 @@
-shared_examples "a base query" do |entity_class|
-  describe '.entity_class' do
-    it 'responds with Book class' do
-      expect(described_class.entity_class).to eq(entity_class)
+shared_examples "a base query" do |default_collection|
+  describe '.default_collection' do
+    it 'responds with Book collection' do
+      expect(described_class.default_collection).to eq(default_collection)
     end
   end
 
@@ -30,23 +30,23 @@ shared_examples "a base query" do |entity_class|
         expect { query }.to raise_exception(ArgumentError)
       end
     end
+  end
 
-    describe '#filter_params' do
-      subject(:params) { described_class.new(params).params }
-      context 'with the filter key' do
-        let(:params) { { filter: { where: { key: '1' } } } }
+  describe '#filter_params' do
+    subject(:params) { described_class.new(params).params }
+    context 'with the filter key' do
+      let(:params) { { filter: { where: { key: '1' } } } }
 
-        it 'doesn\'t raise exceptions' do
-          expect { params }.not_to raise_exception
-        end
+      it 'doesn\'t raise exceptions' do
+        expect { params }.not_to raise_exception
       end
+    end
 
-      context 'without the filter key' do
-        let(:params) { { other_key: { where: { key: '1' } } } }
+    context 'without the filter key' do
+      let(:params) { { other_key: { where: { key: '1' } } } }
 
-        it 'doesn\'t raise exceptions' do
-          expect { params }.not_to raise_exception
-        end
+      it 'doesn\'t raise exceptions' do
+        expect { params }.not_to raise_exception
       end
     end
   end

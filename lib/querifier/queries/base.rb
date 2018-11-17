@@ -7,7 +7,7 @@ module Querifier
       end
 
       def collection
-        @collection ||= self.class.entity_class.all
+        @collection ||= self.class.default_collection
       end
 
       def params
@@ -19,13 +19,8 @@ module Querifier
       end
 
       module ClassMethods
-        def entity_class(value = nil)
-          return entity_class = value unless value.nil?
-          @@entity_class ||= Object.const_get self.name.split('::').last.split('Query').first
-        end
-
-        def entity_class=(value)
-          @@entity_class = value
+        def default_collection
+          @@default_collection ||= Object.const_get(self.name.split('::').last.split('Query').first).all
         end
       end
 

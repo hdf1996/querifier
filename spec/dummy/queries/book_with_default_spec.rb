@@ -1,5 +1,5 @@
 describe Dummy::Queries::BookWithDefault do
-  it_behaves_like 'a base query', Book
+  it_behaves_like 'a base query', Book.all
   it_behaves_like 'a where query'
   it_behaves_like 'a order query'
 

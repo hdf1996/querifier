@@ -7,7 +7,9 @@ module Dummy
 
       WHERE_ATTRIBUTES = [:key, :key_2].freeze
 
-      entity_class ::Book
+      def default_collection
+        ::Book.all
+      end
     end
   end
 end
