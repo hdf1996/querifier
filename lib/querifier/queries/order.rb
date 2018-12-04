@@ -61,13 +61,23 @@ module Querifier
         @@default_sort = { id: :asc }
 
         def order_attributes(*value)
-          return @@order_attributes = [*value] if value.any?
-          @@order_attributes
+          return class_variable_set :@@order_attributes, [*value] if value.any?
+          begin
+            class_variable_get :@@order_attributes
+          rescue NameError
+            class_variable_set :@@order_attributes, []
+            class_variable_get :@@order_attributes
+          end
         end
 
         def default_sort(value = nil)
-          return @@default_sort = value if value
-          @@default_sort
+          return class_variable_set :@@default_sort, value if value
+          begin
+            class_variable_get :@@default_sort
+          rescue NameError
+            class_variable_set :@@default_sort, { id: :asc }
+            class_variable_get :@@default_sort
+          end
         end
       end
     end

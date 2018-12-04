@@ -1,4 +1,50 @@
 shared_examples "a order query" do
+  describe '.default_sort' do
+    let!(:old_default_sort) { described_class.default_sort.dup }
+    let(:fake_attributes) { { Time.now.to_i.to_s.to_sym => true } }
+    before do
+      stub_const 'FakeOrderClass', Class.new
+      FakeOrderClass.class_eval{ include Querifier::Queries::Order }
+    end
+
+    after(:each) { described_class.default_sort old_default_sort }
+
+    it 'does not change if base class does' do
+      expect { FakeOrderClass.default_sort fake_attributes }.not_to(
+        change { described_class.default_sort }
+      )
+    end
+
+    it 'does not change if base class does' do
+      expect { described_class.default_sort *fake_attributes }.not_to(
+        change { FakeOrderClass.order_attributes }
+      )
+    end
+  end
+
+  describe '.order_attributes' do
+    let!(:old_order_attributes) { described_class.order_attributes.dup }
+    let(:fake_attributes) { [Time.now.to_i.to_s.to_sym] }
+    before do
+      stub_const 'FakeOrderClass', Class.new
+      FakeOrderClass.class_eval{ include Querifier::Queries::Order }
+    end
+
+    after(:each) { described_class.order_attributes *old_order_attributes }
+
+    it 'does not change if base class does' do
+      expect { FakeOrderClass.order_attributes *fake_attributes }.not_to(
+        change { described_class.order_attributes }
+      )
+    end
+
+    it 'does not change if base class does' do
+      expect { described_class.order_attributes *fake_attributes }.not_to(
+        change { FakeOrderClass.order_attributes }
+      )
+    end
+  end
+
   describe "#sort_by" do
     let(:query) { described_class.new(params) }
 
