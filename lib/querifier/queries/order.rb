@@ -49,7 +49,7 @@ module Querifier
 
       def order_params
         @order_params ||=
-          params.fetch(Config.order_param, {}).select { |k| valid_option? k.to_sym }
+          params.fetch(Config.order_param, {}).select { |(k, _)| valid_option? k.to_sym }
       end
 
       def self.included(klass)

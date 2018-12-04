@@ -38,7 +38,7 @@ module Querifier
 
       def filter_params
         @filter_params ||=
-          params.fetch(Config.where_param, {}).select { |k| valid_option? k.to_sym }
+          params.fetch(Config.where_param, {}).select { |(k, _)| valid_option? k.to_sym }
       end
 
 
