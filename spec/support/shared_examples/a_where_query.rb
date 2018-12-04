@@ -1,4 +1,27 @@
 shared_examples "a where query" do
+  describe '.where_attributes' do
+    let!(:old_where_attributes) { described_class.where_attributes.dup }
+    let(:fake_attributes) { [Time.now.to_i.to_s.to_sym] }
+    before do
+      stub_const 'FakeWhereClass', Class.new
+      FakeWhereClass.class_eval{ include Querifier::Queries::Where }
+    end
+
+    after(:each) { described_class.where_attributes *old_where_attributes }
+
+    it 'does not change if base class does' do
+      expect { FakeWhereClass.where_attributes *fake_attributes }.not_to(
+        change { described_class.where_attributes }
+      )
+    end
+
+    it 'does not change if base class does' do
+      expect { described_class.where_attributes *fake_attributes }.not_to(
+        change { FakeWhereClass.where_attributes }
+      )
+    end
+  end
+
   describe "#filter_by" do
     let(:query) { described_class.new(params) }
 

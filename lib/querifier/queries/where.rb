@@ -50,8 +50,13 @@ module Querifier
         @@where_attributes = []
 
         def where_attributes(*value)
-          return @@where_attributes = [*value] if value.any?
-          @@where_attributes
+          return class_variable_set :@@where_attributes, [*value] if value.any?
+          begin
+            class_variable_get :@@where_attributes
+          rescue NameError
+            class_variable_set :@@where_attributes, []
+            class_variable_get :@@where_attributes
+          end
         end
       end
     end
