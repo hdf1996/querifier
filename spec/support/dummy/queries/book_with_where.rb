@@ -5,7 +5,7 @@ module Dummy
       include Querifier::Queries::Where
 
 
-      WHERE_ATTRIBUTES = [:key, :key_2].freeze
+      where_attributes :key, :key_2
 
       def default_collection
         ::Book.all

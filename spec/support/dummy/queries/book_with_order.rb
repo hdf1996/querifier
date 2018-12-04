@@ -4,7 +4,7 @@ module Dummy
       include Querifier::Queries::Base
       include Querifier::Queries::Order
 
-      ORDER_ATTRIBUTES = [:key, :key_2].freeze
+      order_attributes :key, :key_2
 
       def default_collection
         ::Book.all
