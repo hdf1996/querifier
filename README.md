@@ -1,9 +1,9 @@
 [![Build Status](https://travis-ci.com/hdf1986/querifier.svg?branch=master)](https://travis-ci.com/hdf1986/querifier)
 # Querifier
 
-Querifier is a gem intended to create queries for api's easy & fast, it isn't an ORM, instead, it's a layer over it.
+Querifier is a gem intended to create queries for API's easy & fast, it isn't an ORM, instead, it's a layer over it.
 
-The basic use case is when you have an API and you want to filter & order the results without having to think too much
+The most common case of use is to create simple and generic, yet powerful filtering and ordering in your API's results.
 
 ## Demo
 
@@ -105,7 +105,7 @@ end
 
 ## Custom methods
 
-In case you arrive to a case where you need a filter different than the default ones, you can do something like this:
+If you reach to a case where you need a filter to be different than the default ones, you can do something like this:
 
 ```ruby
 class BookQuery
@@ -147,20 +147,20 @@ end
 ```
 
 ## Good to know
-- You can create a filter_by_* or order_by_* method for any name you want to, just take care that if it doesn't exist in the database, it will need a custom method as seen before
+- You can create a filter_by_* or order_by_* method for any name you want to, just take care that if the field doesn't exist in the database, it will need a custom method as seen before
 - The filters are executed in the order they are received from the `.new` method, this is a coincidence, so i can't ensure it will keep happening in the future
 - Most of this structure is inspired by Loopback REST API for querying data (see https://loopback.io/doc/en/lb3/Querying-data.html). I don't like loopback at all, but i think this standard is a good place to start with
-- Probably there's some minor performance differences between custom methods and default ones (the custom ones being the faster ones), because we use `method_missing` magic to implement the default ones
-- If you don't want to use where, or order, you can include just `Querifier::Queries::Order` or `Querifier::Queries::Where` instead of `Querifier::Queries::Default`, according to your needs
+- There's some minor performance differences between custom methods and default ones (the custom ones being the faster ones), because we use `method_missing` magic to implement the default ones is slower
+- If you don't want to use `where`, or `order`, you can include just `Querifier::Queries::Order` or `Querifier::Queries::Where` instead of `Querifier::Queries::Default`, according to your needs
 
 ## To-do's
 
-- Support for greather than where filter
-- Support for lower than where filter
-- Support for equal than where filter (currently we are using sql LIKE by default)
+- Support for `greather than` where filter
+- Support for `lower than` where filter
+- Support for `equal than` where filter (currently we are using sql LIKE by default)
 - Performance metrics
-- Permit multiple order attributes: We are supporting this in the structure, but in the practice we are ignoring the second or greather elements
-- Add support for different adapters: Currently we are assuming that the ORM is something similar to ActiveRecord, i don't think it's a good idea to be tied to ActiveRecord, so will be great to provide some sort of customizable things there
+- Permit multiple order attributes: We are supporting this in the params structure, but in the practice we are ignoring the second or greather elements
+- Add support for different adapters: Currently we are assuming that the ORM is something similar to ActiveRecord, i don't think it's a good idea to be tied to ActiveRecord, so will be great to provide some sort of customizable support here
 
 ## Development
 
