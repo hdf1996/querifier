@@ -8,4 +8,7 @@ group :test do
   gem 'byebug'
   gem 'fuubar'
   gem 'generator_spec'
+
+  gem "rake"
+  gem "rspec"
 end

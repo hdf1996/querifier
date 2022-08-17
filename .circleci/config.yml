@@ -1,0 +1,22 @@
+version: 2.1
+orbs:
+  ruby: circleci/ruby@1.2
+
+jobs:
+  test:
+    docker:
+      - image: cimg/ruby:2.7.2
+    steps:
+      - checkout
+      - run:
+          name: Bundle install
+          command: bundle install
+      - run:
+          name: Rspec
+          command: bundle exec rspec
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - test
