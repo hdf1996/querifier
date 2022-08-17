@@ -9,12 +9,10 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Hugo Farji"]
   spec.email         = ["hugo.farji@gmail.com"]
 
+  spec.summary       = %q{Querifier brings Convention Over Configuration to your API's filters}
+  spec.description   = %q{Querifier brings Convention Over Configuration to your API's filters}
   # TODO
-  spec.summary       = %q{ Write a short summary, because RubyGems requires one.}
-  # TODO
-  spec.description   = %q{ Write a longer description or delete this line.}
-  # TODO
-  spec.homepage      = "https://google.com.ar"
+  spec.homepage      = "https://github.com/hdf1986/querifier"
   spec.license       = "MIT"
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
