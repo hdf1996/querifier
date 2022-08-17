@@ -1,7 +1,8 @@
-[![Build Status](https://travis-ci.com/hdf1986/querifier.svg?branch=master)](https://travis-ci.com/hdf1986/querifier)
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/hdf1986/querifier/tree/main.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/hdf1986/querifier/tree/main)
+
 # Querifier
 
-Querifier is a gem intended to create queries for API's easy & fast, it isn't an ORM, instead, it's a layer over it.
+Querifier is a gem intended to easily generate queries for API's, it isn't an ORM, instead, it's a layer on top of ActiveRecord.
 
 The most common case of use is to create simple and generic, yet powerful filtering and ordering in your API's results.
 
@@ -27,14 +28,14 @@ bundle
 
 If you are using rails, you can do:
 
-```
+```shell
 rails generate querifier:install
 ```
 
 ## Usage
 If you are using rails, you can do:
 
-```
+```shell
 rails generate querifier:query your_model
 ```
 
@@ -76,7 +77,7 @@ Querifier will try to assume the class for your model removing the `Query` from 
   - BooksQuery => Books
   - SomeModule::BookQuery => Book
 
-If your model isn't called like your query, you can configure it with the entity_class method, something like:
+If your model isn't called like your query, you can configure it with the default_collection method, something like:
 
 ```ruby
 class BookQuery
@@ -103,9 +104,9 @@ end
 ```
 
 
-## Custom methods
+## Custom filters/methods
 
-If you reach to a case where you need a filter to be different than the default ones, you can do something like this:
+If you reach to a case where you need a filter that's not covered by default than the default ones, you can do something like this:
 
 ```ruby
 class BookQuery
@@ -138,7 +139,7 @@ class BookQuery
 
   def order_by_author_name(direction)
     @collection = @collection.joins(:author).order("authors.name #{direction}")
-    # Don't pannic! I know we are concatenating a raw value to the query, but in this case this is being validated in the invocation of this method
+    # Don't pannic! I know we are concatenating a "raw" value to the query, but in this case direction is being sanitized and validated in the invocation of this method
     # In case you have any doubt about it, check https://github.com/hdf1986/querifier/blob/master/lib/querifier/queries/order.rb valid_sort? method
     # Im totally open to better ways of doing this, since i didn't find a nice way to implement joined and dinamic ordering queries
   end
@@ -152,15 +153,6 @@ end
 - Most of this structure is inspired by Loopback REST API for querying data (see https://loopback.io/doc/en/lb3/Querying-data.html). I don't like loopback at all, but i think this standard is a good place to start with
 - There's some minor performance differences between custom methods and default ones (the custom ones being the faster ones), because we use `method_missing` magic to implement the default ones is slower
 - If you don't want to use `where`, or `order`, you can include just `Querifier::Queries::Order` or `Querifier::Queries::Where` instead of `Querifier::Queries::Default`, according to your needs
-
-## To-do's
-
-- Support for `greather than` where filter
-- Support for `lower than` where filter
-- Support for `equal than` where filter (currently we are using sql LIKE by default)
-- Performance metrics
-- Permit multiple order attributes: We are supporting this in the params structure, but in the practice we are ignoring the second or greather elements
-- Add support for different adapters: Currently we are assuming that the ORM is something similar to ActiveRecord, i don't think it's a good idea to be tied to ActiveRecord, so will be great to provide some sort of customizable support here
 
 ## Development
 
