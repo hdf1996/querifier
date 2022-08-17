@@ -70,6 +70,16 @@ class BookController < ApiController
 end
 ```
 
+## Indexing
+
+Querifier does not generate any kind of database indexes automatically, It's up to you to identify which columns may need indexes on the database and to add them.
+
+Here are some quick tips: 
+- Columns you normally use for ordering or filtering, should have an index. 
+- By default Rails already includes foreign keys columns for you, but not in most other columns
+- Having too many indexes can be harmful depending on the scenario, try to keep it balanced
+
+
 ## Custom model class
 
 Querifier will try to assume the class for your model removing the `Query` from your query classname, some examples are:
