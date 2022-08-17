@@ -118,7 +118,7 @@ end
 
 ## Custom filters/methods
 
-If you reach to a case where you need a filter that's not covered by default than the default ones, you can do something like this:
+If you reach to a case where you need a filter that's not covered by the default ones, you can do something like this:
 
 ```ruby
 class BookQuery
