@@ -12,6 +12,8 @@ You can check https://querifier-demo.herokuapp.com/v1/books?page=1&filter[where]
 
 The source code of the demo is available at https://github.com/hdf1986/querifier-demo
 
+Also, a frontend demo built in Next.js can be found at https://github.com/hdf1986/querifier-demo-frontend / https://querifier-demo-frontend.vercel.app/
+
 ## Installation
 
 Add this line to your application's Gemfile:
